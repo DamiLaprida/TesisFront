@@ -3,13 +3,15 @@ import { Box, Grid, Button, TextField } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
 
 const Login = () => {
-  const { register, control, handleSubmit } = useForm({
+  const { control, handleSubmit } = useForm({
     defaultValues: {
-      firstName: "",
-      select: {},
+      mail: "",
+      password: "",
     },
   });
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data);
+  };
   return (
     <Grid
       container
@@ -34,25 +36,39 @@ const Login = () => {
         <Controller
           name="mail"
           control={control}
-          render={({ field }) => (
-            <TextField fullWidth id="mail" label="Mail" type="email" />
+          rules={{ required: "Mail required" }}
+          render={({ field: { onChange, value }, fieldState: { error } }) => (
+            <TextField
+              fullWidth
+              id="mail"
+              label="Mail"
+              type="email"
+              value={value}
+              onChange={onChange}
+              error={!!error}
+              helperText={error ? error.message : null}
+            />
           )}
+          rules={{ required: "Mail required" }}
         />
 
         <Controller
           name="password"
           control={control}
-          render={({ field }) => (
+          render={({ field: { onChange, value }, fieldState: { error } }) => (
             <TextField
               fullWidth
               id="password"
-              label="Contraseña"
+              label="Password"
               type="password"
-              {...register("password", { required: true, minLength: 8 })}
+              value={value}
+              onChange={onChange}
+              error={!!error}
+              helperText={error ? error.message : null}
             />
           )}
+          rules={{ required: "Password required" }}
         />
-
         <Box
           style={{
             display: "flex",
@@ -60,6 +76,7 @@ const Login = () => {
           }}
         >
           <Button
+            type="submit"
             sx={{ px: 4, py: 1, m: 3 }}
             id="loginSubmit"
             variant="contained"
