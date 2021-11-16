@@ -2,6 +2,8 @@ import React from "react";
 
 import Navigation from "./Components/Shared/Navigation";
 import Login from "./Pages/Login";
+import Contact from "./Pages/Conctact";
+import Backoffice from "./Pages/Backoffice";
 
 //vendor
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -15,9 +17,12 @@ function App() {
         <Route exact path="/salas">
           Salas
         </Route>
-        <Route path="/reservas">Reservas</Route>
-        <Route path="/contacto">Contacto</Route>
-        <Route path="/login" element={<Login />} />
+        <Route exact path="/reservas">
+          Reservas
+        </Route>
+        <Route exact path="/contacto" element={<Contact />} />
+        <Route exact path="/login" element={<Login />} />
+        <Route exact path="/backoffice" element={<Backoffice />} />
       </Routes>
     </Router>
   );

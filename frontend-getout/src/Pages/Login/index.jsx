@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Box, Grid, Button, TextField } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const { control, handleSubmit } = useForm({
@@ -36,7 +37,6 @@ const Login = () => {
         <Controller
           name="mail"
           control={control}
-          rules={{ required: "Mail required" }}
           render={({ field: { onChange, value }, fieldState: { error } }) => (
             <TextField
               fullWidth
@@ -49,7 +49,7 @@ const Login = () => {
               helperText={error ? error.message : null}
             />
           )}
-          rules={{ required: "Mail required" }}
+          rules={{ required: "Ingrese un mail" }}
         />
 
         <Controller
@@ -59,7 +59,7 @@ const Login = () => {
             <TextField
               fullWidth
               id="password"
-              label="Password"
+              label="Contraseña"
               type="password"
               value={value}
               onChange={onChange}
@@ -67,7 +67,7 @@ const Login = () => {
               helperText={error ? error.message : null}
             />
           )}
-          rules={{ required: "Password required" }}
+          rules={{ required: "Ingrese su contraseña" }}
         />
         <Box
           style={{
@@ -83,6 +83,16 @@ const Login = () => {
             color="secondary"
           >
             Login
+          </Button>
+          <Button
+            component={Link}
+            to="/backoffice"
+            sx={{ px: 4, py: 1, m: 3 }}
+            id="loginSubmit"
+            variant="contained"
+            color="secondary"
+          >
+            Ir a Backoffice
           </Button>
         </Box>
       </Box>
