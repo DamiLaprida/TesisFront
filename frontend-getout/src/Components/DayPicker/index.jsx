@@ -11,13 +11,10 @@ const style = {
   },
 };
 
-const AvailableDates = ["10:00", "12:00", "14:00", "16:00"];
+const AvailableDates = ["11:00", "12:00", "14:00", "16:00", "18:00"];
 
 const DayPicker = () => {
   const [dates, setDates] = useState([]);
-  //dates  = data (10, 12, 14, 16)
-  //setDates = modificar la data setDates(...dates,  18) (las fechas mas el 18 nuevo)
-
 
   useEffect(() => {
     const promesa = new Promise((res, rej) => {
